@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>Senior Design</title>
+
+<style>
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background-color: #F1F1F1;
+}
+
+#searchfield {
+	height: 20px;
+	width: 80%;
+	padding: 2px;
+	font-size: 16px;
+	margin-left: 10%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#container {
+	margin-top: 20px;
+	width: 100%;
+	height: 100%;
+	background-color: #E88283;
+	padding: 8px;
+}
+</style>
+</head>
+<body>
+<input type="text" id="searchfield">
+<hr>
+
+<div id="container"></div>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+
+$(function() {
+	var resizeTimer;
+	$( window ).resize(function() {
+		clearTimeout(resizeTimer);
+    	resizeTimer = setTimeout(function() {
+			var width = $(window).width();
+			$.post("get_images.php", {width: width}, function(output) {
+					$("#container").html(output);
+			});
+		}, 100);
+			
+			
+	});
+
+	$.post("get_images.php", {width: $(window).width()}, function(output) {
+			$("#container").html(output);
+	});
+});
+</script>
+</body>
+</html>

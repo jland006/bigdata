@@ -1,0 +1,1 @@
+http://svn.apache.org/repos/asf/cassandra/trunk/examples/hadoop_word_count/src/WordCount.java
